@@ -1,32 +1,18 @@
 import { useState } from 'react';
-import { useEffect } from 'react';
-import{HangImages} from './components/HangImages';
-import {letters} from './herpers/letters';
-import {getRandomWord} from './herpers/getRandomWord';
+import { HangImages } from './components/HangImages';
+import { letters } from './herpers/letters';
+import { getRandomWord } from './herpers/getRandomWord';
 import './App.css';
 
 function App() {
 
-  const [word, setWord] = useState (getRandomWord() );
-  const [hiddenWord, setHiddenWord] = useState ("_ ".repeat(word.length));
+  const [word, setWord] = useState(getRandomWord());
+  const [hiddenWord, setHiddenWord] = useState("_ ".repeat(word.length));
   const [attempts, setAttempts] = useState(0);
-  const [lose, setLose] = useState(false);
-  const [won, setWon] = useState(false);
 
-  // determina si la persona perdio el juego
-  useEffect( () => {
-    if (attempts >= 9) {
-      setLose(true);
-    }
-  }, [attempts]);
-
-  // determinar si la persona gano el juego
-  useEffect( () => {
-    const currentHiddenWord = hiddenWord.split(" ").join("");
-    if (currentHiddenWord === word) {
-      setWon(true);
-    }
-  }, [hiddenWord]);
+  // Se calcula directo desde el estado: sin efectos ni renders extra
+  const lose = attempts >= 9;
+  const won = hiddenWord.split(" ").join("") === word;
 
   const checkLetter = (letter: string) => {
     if (lose) return;
@@ -55,8 +41,6 @@ function App() {
     setWord(newWord);
     setHiddenWord("_ ".repeat(newWord.length));
     setAttempts(0);
-    setLose(false);
-    setWon(false);
   }
   return (
 
