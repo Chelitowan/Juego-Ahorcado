@@ -97,6 +97,7 @@ function App() {
       <br /><br />
       <button onClick={newGame}>Jugas otra vez?</button>
 
+      <footer className="App-footer">Hecho por Chelitowan con amor 🫶</footer>
 
     </div>  
   )

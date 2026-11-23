@@ -1,3 +1,11 @@
+.App-footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
